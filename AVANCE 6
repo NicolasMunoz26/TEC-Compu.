@@ -7,62 +7,74 @@ Lo que estaba pensando para poder incluir los ciclos while/for es que igual pone
 cuenten cuantos hay en caada salóin y hacer listas de matrículas con nombres y carreras para la clase de mi plan de vida en el TEC, solo que no se como hacer listas entonces realmente ahorita no puedo avanzar mucho
 
 entonces el pseudocódigo se vería así
-# Contadores globales
 contador_salon1 = 0
 contador_salon2 = 0
 contador_salon3 = 0
-
 max_salon = 30
 
-# Funciones para sumar alumno a cada salón
-def Contador_salon1():
+salon1 = []
+salon2 = []
+salon3 = []
+
+def Contador_salon1(nombre):
+    nombre = input("Ingresa nombre: ")
     global contador_salon1
+    salon1.append(nombre)
     if contador_salon1 < max_salon:
         contador_salon1= contador_salon1+1
     return contador_salon1
 
-def Contador_salon2():
+def Contador_salon2(nombre):
+    nombre = input("Ingresa nombre: ")
     global contador_salon2
+    salon2.append(nombre)
     if contador_salon2 < max_salon:
         contador_salon2= contador_salon2+1
     return contador_salon2
 
-def Contador_salon3():
+def Contador_salon3(nombre):
+    nombre = input("Ingresa nombre: ")
     global contador_salon3
+    salon3.append(nombre)
     if contador_salon3 < max_salon:
         contador_salon3=contador_salon3 + 1
     return contador_salon3
 
-while contador_salon1 < max_salon or contador_salon2 < max_salon or contador_salon3 < max_salon:
-    print("Registro de alumno")
-    matricula = input("Ingresa matrícula: ")
-    nombre = input("Ingresa nombre: ")
-    carrera = input("Ingresa carrera: ")
+matricula = 1 
+nombre = 0
+print("Registro de alumno, si quieres terminar de programar en matricula presione 0")
+matricula = int(input("Ingresa matrícula: "))
+while matricula != 0:
+  nombre=0
+  carrera = input("Ingresa carrera: ")
+  salones= int(input("¿A qué salón quieres asignar? "))
 
-    salones= int(input("¿A qué salón quieres asignar? "))
-
-    if salones == 1:
+  if salones == 1:
         if contador_salon1 < max_salon:
-            print("Alumno agregado. Total en salón 1: ", Contador_salon1())
+         print("Alumno agregado. Total en salón 1: ", Contador_salon1(nombre))
         else:
-            print(" El salón 1 ya está lleno.")
-    elif salones == 2:
+         print(" El salón 1 ya está lleno.")
+  elif salones == 2:
         if contador_salon2 < max_salon:
-            print("Alumno agregado. Total en salón 2: ", Contador_salon2())
+          print("Alumno agregado. Total en salón 2: ", Contador_salon2(nombre))
         else:
-            print(" El salón 2 ya está lleno.")
-    elif salones == 3:
-        if contador_salon3 < max_salona11111:
-            print("Alumno agregado. Total en salón 3: ", Contador_salon3())
+          print(" El salón 2 ya está lleno.")
+  elif salones == 3:
+        if contador_salon3 < max_salon:
+          print("Alumno agregado. Total en salón 3: ", Contador_salon3(nombre))
         else:
             print("El salón 3 ya está lleno.")
-    else:
+  else:
         print("Salón inválido. Solo 1, 2 o 3.")
+  matricula = int(input("Ingresa matrícula: "))
 
 print("Registro finalizado.")
-print("Salón 1: ", contador_salon1(), "alumnos")
-print(f"Salón 2:", contador_salon2(), "alumnos")
-print(f"Salón 3:", contador_salon3(), "alumnos")
+print("Salón 1: ", contador_salon1, "alumnos")
+print(salon1)
+print("Salón 2:", contador_salon2, "alumnos")
+print(salon2)
+print("Salón 3:", contador_salon3, "alumnos")
+print(salon3)
 
 
 Y así para los tres Salones hasta que se llenen mientras los tres guardan toda la info de los alumnos
