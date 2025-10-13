@@ -1,81 +1,91 @@
-Nicolás Muñoz
-Contexto del Proyecto
+tareas = []
+resultados = []
+promedios= []
+valores= []
 
-Mi Papá es mentor en el tec y cada año con nuevos ingresos el tiene que saber cuantos va a tener de carrera, entre negocios y finanzas.
+num_salones=int(input("¿Cuántos salones quieres?: "))
+print()
+cont_alumnos=0
+salones=[]
+print("Registro de alumno y calculadora de calificaciones, si quieres terminar de programar en matricula presione 0")
 
-Lo que estaba pensando para poder incluir los ciclos while/for es que igual poner carreras y que ya no sea solo para dar de alta si no que sea más bien un como creador de grupos entonces tener contadores pero que 
-cuenten cuantos hay en caada salóin y hacer listas de matrículas con nombres y carreras para la clase de mi plan de vida en el TEC, solo que no se como hacer listas entonces realmente ahorita no puedo avanzar mucho
-
-entonces el pseudocódigo se vería así
-contador_salon1 = 0
-contador_salon2 = 0
-contador_salon3 = 0
-max_salon = 30
-
-salon1 = []
-salon2 = []
-salon3 = []
-
-def Contador_salon1(nombre):
-    nombre = input("Ingresa nombre: ")
-    global contador_salon1
-    salon1.append(nombre)
-    if contador_salon1 < max_salon:
-        contador_salon1= contador_salon1+1
-    return contador_salon1
-
-def Contador_salon2(nombre):
-    nombre = input("Ingresa nombre: ")
-    global contador_salon2
-    salon2.append(nombre)
-    if contador_salon2 < max_salon:
-        contador_salon2= contador_salon2+1
-    return contador_salon2
-
-def Contador_salon3(nombre):
-    nombre = input("Ingresa nombre: ")
-    global contador_salon3
-    salon3.append(nombre)
-    if contador_salon3 < max_salon:
-        contador_salon3=contador_salon3 + 1
-    return contador_salon3
-
-matricula = 1 
-nombre = 0
-print("Registro de alumno, si quieres terminar de programar en matricula presione 0")
-matricula = int(input("Ingresa matrícula: "))
-while matricula != 0:
-  nombre=0
-  carrera = input("Ingresa carrera: ")
-  salones= int(input("¿A qué salón quieres asignar? "))
-
-  if salones == 1:
-        if contador_salon1 < max_salon:
-         print("Alumno agregado. Total en salón 1: ", Contador_salon1(nombre))
-        else:
-         print(" El salón 1 ya está lleno.")
-  elif salones == 2:
-        if contador_salon2 < max_salon:
-          print("Alumno agregado. Total en salón 2: ", Contador_salon2(nombre))
-        else:
-          print(" El salón 2 ya está lleno.")
-  elif salones == 3:
-        if contador_salon3 < max_salon:
-          print("Alumno agregado. Total en salón 3: ", Contador_salon3(nombre))
-        else:
-            print("El salón 3 ya está lleno.")
+for i in range(num_salones):
+  print()
+  print(f"Salon {i+1}")
+  print()
+  tareas=[]
+  valores=[]
+  salon=[]
+  cant_alumnos=int(input("¿Cuántos alumnos quieres en este salón?: "))
+  cont_alumnos+=1
+  cant_tareas=int(input(f"Cuantas tareas vas a calificar para salon {i+1}: "))
+  for t in range(cant_tareas):
+    tarea=input(f"Ingresa nombre de la tarea {t+1}: ")
+    tareas.append(tarea)
+    valor=float(input(f"Ingresa el valor de la tarea {t+1}: "))
+    valores.append(valor)
+  if sum(valores)!=100:
+    print("Los valores deben sumar 100")
+    valores.clear()
+    print()
+    for t in range(cant_tareas):
+      valor=int(input(f"Ingresa el valor de la tarea {t+1}: "))
+      valores.append(valor)
+      print()
   else:
-        print("Salón inválido. Solo 1, 2 o 3.")
-  matricula = int(input("Ingresa matrícula: "))
+    print("Valores regitrados")
+    print()
+
+  for j in range(cant_alumnos):
+    print()
+    print(f"Alumno {j+1}")
+    print()
+    matricula = int(input("Ingresa matrícula: "))
+    nombre = input("Ingresa nombre: ")
+    carrera = input("Ingresa carrera: ")
+    print()
+    alumno = {"matricula": matricula, "nombre": nombre, "carrera": carrera, "calificaciones": {}, "valores": {}}
+    print(f"calificaciones para {nombre}")
+    for tarea in tareas:
+      while True:
+        calificacion = float(input(f"Ingresa calificación para {tarea}, del 1 al 10: "))
+        if 0 <= calificacion <= 10:
+          alumno["calificaciones"][tarea] = calificacion
+          alumno["valores"][tarea] = valores[tareas.index(tarea)]
+          break
+        else:
+          print("La calificación debe estar entre 0 y 10.")
+    salon.append(alumno)
+  salones.append({"tareas": tareas.copy(), "valores": valores.copy(),"alumnos": salon})
 
 print("Registro finalizado.")
-print("Salón 1: ", contador_salon1, "alumnos")
-print(salon1)
-print("Salón 2:", contador_salon2, "alumnos")
-print(salon2)
-print("Salón 3:", contador_salon3, "alumnos")
-print(salon3)
+print()
 
-
-Y así para los tres Salones hasta que se llenen mientras los tres guardan toda la info de los alumnos
-También como ya dije todavia no se hacer listas entonces esto es lo mas que puedo hacer
+print("Resultados")
+for s, data in enumerate(salones):
+  tareas = data["tareas"]
+  valores = data["valores"]
+  salon = data["alumnos"]
+  print()
+  if len(salon)==0:
+    print(f"Salon {s+1} vacío")
+    print()
+    continue
+  print(f"-Salon {s+1}: {len(salon)} alumnos-")
+  print()
+  print("{:<12}{:<15}{:<15}".format("Matrícula", "Nombre", "Carrera"), end="")
+  for tarea in tareas:
+    print("{:<10}{:<10}".format(tarea, "Valor"), end="")
+  print("{:<10}".format("Promedio"))
+  print("-" * 90)
+  for alumno in salon:
+    print("{:<12}{:<15}{:<15}".format(alumno["matricula"], alumno["nombre"], alumno["carrera"]), end="")
+    promedios.clear()
+    for tarea in tareas:
+      cal = alumno["calificaciones"][tarea]
+      val = alumno["valores"][tarea]
+      print("{:<10.1f}{:<10.1f}".format(cal, val), end="")
+      promedios.append(cal * (val / 100))
+    total = sum(promedios)
+    print("{:<10.2f}".format(total))
+    print()
