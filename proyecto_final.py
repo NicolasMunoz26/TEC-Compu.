@@ -53,7 +53,7 @@ for i in range(num_salones):
     print()
     print(f"Alumno {j+1}")
     print()
-    matricula = int(input("Ingresa matrícula: "))
+    matricula = float(input("Ingresa matrícula: "))
     nombre = input("Ingresa nombre: ")
     carrera = input("Ingresa carrera: ")
     print()
