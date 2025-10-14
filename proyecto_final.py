@@ -1,4 +1,3 @@
-
 tareas = []
 resultados = []
 promedios= []
@@ -57,7 +56,7 @@ for i in range(num_salones):
         if 0 <= calificacion <= 10:
           alumno["calificaciones"][tarea] = calificacion
           alumno["valores"][tarea] = valores[tareas.index(tarea)]
-          alumno["promedio"][tarea] = promedio_cali(alumno["calificaciones"].value(()
+          alumno["promedio"][tarea] = promedio_cali(alumno["calificaciones"].values())
           break
         else:
           print("La calificación debe estar entre 0 y 10.")
