@@ -49,7 +49,7 @@ for i in range(num_salones):
     nombre = input("Ingresa nombre: ")
     carrera = input("Ingresa carrera: ")
     print()
-    alumno = {"matricula": matricula, "nombre": nombre, "carrera": carrera, "calificaciones": {}, "valores": {}}
+    alumno = {"matricula": matricula, "nombre": nombre, "carrera": carrera, "calificaciones": {}, "valores": {}, "promedio": {}}
     print(f"calificaciones para {nombre}")
     for tarea in tareas:
       while True:
@@ -57,7 +57,7 @@ for i in range(num_salones):
         if 0 <= calificacion <= 10:
           alumno["calificaciones"][tarea] = calificacion
           alumno["valores"][tarea] = valores[tareas.index(tarea)]
-          alumno["promedio"][tarea] = promedio_cali(alumno["calificaciones"])
+          alumno["promedio"][tarea] = promedio_cali(alumno["calificaciones"].value(()
           break
         else:
           print("La calificación debe estar entre 0 y 10.")
