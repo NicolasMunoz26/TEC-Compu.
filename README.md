@@ -7,7 +7,7 @@
 
 Descargar el arvhivo y correr en terminal con:
 
-    python proyecto_finañ.py
+    python proyecto_final.py
 
 
 
