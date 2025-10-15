@@ -1,3 +1,5 @@
+import csv
+
 tareas = []
 resultados = []
 promedios= []
@@ -94,3 +96,12 @@ for s, data in enumerate(salones):
     total = sum(promedios)
     print("{:<10.2f}".format(total))
     print()
+
+with open("alumnos.csv", "w", newline="", encoding="utf-8") as archivo:
+    campos = ["matricula", "nombre", "carrera", "salon","promedio"]
+    writer = csv.DictWriter(archivo, fieldnames=campos)
+    writer.writeheader()
+    writer.writerows(alumnos)
+
+print("Archivo 'alumnos.csv' ya esta listo el archivo en la misma carpeta donde se encuentra este codigo, abrir en excel o en google sheets")
+
