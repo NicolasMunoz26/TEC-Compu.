@@ -1,6 +1,6 @@
 ### Nicolás Muñoz Cruz
 ### A01714495
-### contexto
+### Contexto
 "El programa es una calculadora de calificaciones que crea tablas y que permite descargarlas, tambien integrado ahí mismo te permite poner diferentes salones y dar un valor a cada tarea, que despues se promedio"
 
 ### Instrucciones
