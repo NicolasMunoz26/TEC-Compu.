@@ -5,7 +5,7 @@
 
 ### Instrucciones
 
-Descargar el arvhivo y correr en terminal con:
+Descargar el archivo y correr en terminal con:
 
     python proyecto_final.py
 
